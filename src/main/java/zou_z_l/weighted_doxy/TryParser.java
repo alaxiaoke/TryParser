@@ -43,11 +43,11 @@ public class TryParser  {
 	ArrayList target_list = tryparser.getEdge(chosen_ID);
 	//System.out.println(target_list);
 	List edgetext = tryparser.getEdgeText(target_list, son);
-	System.out.println(edgetext);
+	System.out.println("edgetext"+edgetext);
 	XmlParser xmlparser = new XmlParser();
 	List limited_line = xmlparser.findLocation(edgetext);
 	PutWeight putweight = new PutWeight();
-	putweight.weightMap(limited_line);
+	putweight.weightMap(limited_line);  
 
 	}
 	
@@ -64,7 +64,7 @@ public class TryParser  {
 		}else {
 			System.out.println("没有子节点");
 		}	
-		return sonlist;
+		return sonlist; 
 	}
 	
 	
@@ -74,7 +74,7 @@ public class TryParser  {
 			String node_data = e.attributeValue("id");
 			List<Element> grandsonList = e.elements();
 			for(Element a:grandsonList) {
-				if("com.jaeger.ninegridimageview.NineGridImageView.layoutChildrenView".equals(a.getText())){
+				if("com.jaeger.ninegridimgdemo.ViewServerWorker.run".equals(a.getText())){
 					//System.out.println(node_data);
 					chosen_ID = node_data;
 					break;
@@ -101,7 +101,7 @@ public class TryParser  {
 	}
 	private List getEdgeText(ArrayList target_list,List<Element> son) {
 		List edgetext = new ArrayList();
-		for(int i=0;i<target_list.size();i++) {
+		for(int i=0;i<target_list.size();i++) {        
 			for(Element e:son) {
 				String target_i = String.valueOf(target_list.get(i));
 				if(target_i.equals(e.attributeValue("id"))) {

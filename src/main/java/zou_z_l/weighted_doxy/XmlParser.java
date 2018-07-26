@@ -27,7 +27,7 @@ public class XmlParser {
 	}
 	
 	public List<Element> findLocation(List edgetext){
-		Document xml = load("/home/zou/zou_z_l/doxygen_output_of_ninegridimageview/xml/_nine_grid_image_view_8java.xml");
+		Document xml = load("/home/zou/zou_z_l/nine2/xml/_view_server_8java.xml");
 		org.dom4j.Element root = xml.getRootElement();
 		Element sonofroot = root.element("compounddef");
 		Element codelines = sonofroot.element("programlisting");
@@ -51,14 +51,15 @@ public class XmlParser {
 				}
 			}
 		}
-		ArrayList starttoend = new XmlParser().startToEnd("/home/zou/zou_z_l/doxygen_output_of_ninegridimageview/xml/classcom_1_1jaeger_1_1ninegridimageview_1_1_nine_grid_image_view.xml","layoutChildrenView");
+		System.out.println("chosen_line"+chosen_line);
+		ArrayList starttoend = new XmlParser().startToEnd("/home/zou/zou_z_l/nine2/xml/classcom_1_1jaeger_1_1ninegridimgdemo_1_1_view_server_1_1_view_server_worker.xml","run");
 		ArrayList limited_line = new XmlParser().lineFilter(chosen_line,starttoend);
 		return limited_line;
 		
 	}
 	
 	     
-	private ArrayList startToEnd(String directory,String node) {
+	public ArrayList startToEnd(String directory,String node) {
 		ArrayList starttoend = new ArrayList();
 		Document dir = load(directory);
 		org.dom4j.Element root = dir.getRootElement();
@@ -84,6 +85,7 @@ public class XmlParser {
 				}
 			}
 		}
+		System.out.println("starttoend"+starttoend);
 		return starttoend;
 	}
 	private ArrayList lineFilter(ArrayList chosen_line,ArrayList starttoend) {
@@ -104,7 +106,7 @@ public class XmlParser {
 				limited_line.remove(e);
 			}
 		}
-		System.out.println(limited_line);
+		System.out.println("limited_line"+limited_line);
 		return limited_line;
 		  
 	}
