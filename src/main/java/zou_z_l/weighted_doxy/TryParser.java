@@ -32,22 +32,22 @@ public class TryParser  {
 		return document;
 	}
 	public static void main(String[] args) {
-	Document first_doxy = load("/media/zou/57B0-F61A/NineGridImageView-master.graphml");
-	org.dom4j.Element root = first_doxy.getRootElement();
-	Element graph = root.element("graph");
-	//System.out.println(graph.getName());
-	TryParser tryparser = new TryParser();
-	List<Element> son = tryparser.getsonElement(graph);
-	String chosen_ID = tryparser.getGrandson(son);
-	//System.out.println(chosen_ID);
-	ArrayList target_list = tryparser.getEdge(chosen_ID);
-	//System.out.println(target_list);
-	List edgetext = tryparser.getEdgeText(target_list, son);
-	System.out.println("edgetext"+edgetext);
-	XmlParser xmlparser = new XmlParser();
-	List limited_line = xmlparser.findLocation(edgetext);
-	PutWeight putweight = new PutWeight();
-	putweight.weightMap(limited_line);  
+		Document first_doxy = load("/home/zou/zou_z_l/NineGridImageView-master.graphml");
+		org.dom4j.Element root = first_doxy.getRootElement();
+		Element graph = root.element("graph");
+		//System.out.println(graph.getName());
+		TryParser tryparser = new TryParser();
+		List<Element> son = tryparser.getsonElement(graph);
+		String chosen_ID = tryparser.getGrandson(son);
+		//System.out.println(chosen_ID);
+		ArrayList target_list = tryparser.getEdge(chosen_ID);
+		//System.out.println(target_list);
+		List edgetext = tryparser.getEdgeText(target_list, son);
+		System.out.println("edgetext"+edgetext);
+		XmlParser xmlparser = new XmlParser();
+		List limited_line = xmlparser.findLocation(edgetext);
+		PutWeight putweight = new PutWeight();
+		putweight.weightMap(limited_line);  
 
 	}
 	
@@ -74,7 +74,7 @@ public class TryParser  {
 			String node_data = e.attributeValue("id");
 			List<Element> grandsonList = e.elements();
 			for(Element a:grandsonList) {
-				if("com.jaeger.ninegridimgdemo.ViewServerWorker.run".equals(a.getText())){
+				if("com.jaeger.ninegridimageview.NineGridImageView.layoutChildrenView".equals(a.getText())){
 					//System.out.println(node_data);
 					chosen_ID = node_data;
 					break;
